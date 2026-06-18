@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2026 (Оценочная версия) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="50mm" height="50mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 883.18 883.18"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#606062;stroke-width:26.5;stroke-miterlimit:22.9256}
+    .fil1 {fill:none}
+    .fil0 {fill:#373435}
+   ]]>
+  </style>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <path class="fil0" d="M88.32 0l706.54 0c48.57,0 88.32,39.74 88.32,88.32l0 706.54c0,48.57 -39.74,88.32 -88.32,88.32l-706.54 0c-48.57,0 -88.32,-39.74 -88.32,-88.32l0 -706.54c0,-48.57 39.74,-88.32 88.32,-88.32z"/>
+  <rect class="fil1 str0" x="150.46" y="150.46" width="194.08" height="582.25"/>
+  <rect class="fil1 str0" x="344.55" y="150.46" width="194.08" height="582.25"/>
+  <rect class="fil1 str0" x="538.63" y="150.46" width="194.08" height="582.25"/>
+  <rect class="fil1 str0" transform="matrix(8.12639E-15 -0.306835 0.920505 2.43792E-14 150.465 732.713)" width="632.53" height="632.53"/>
+  <rect class="fil1 str0" transform="matrix(8.12639E-15 -0.306835 0.920505 2.43792E-14 150.465 538.63)" width="632.53" height="632.53"/>
+  <rect class="fil1 str0" transform="matrix(8.12639E-15 -0.306835 0.920505 2.43792E-14 150.465 344.548)" width="632.53" height="632.53"/>
+  <line class="fil1 str0" x1="344.55" y1="344.55" x2="538.63" y2= "538.63" />
+  <line class="fil1 str0" x1="339.07" y1="533.15" x2="533.15" y2= "339.07" />
+  <line class="fil1 str0" x1="350.02" y1="544.11" x2="544.11" y2= "738.19" />
+  <line class="fil1 str0" x1="344.55" y1="732.71" x2="538.63" y2= "538.63" />
+  <line class="fil1 str0" x1="152.77" y1="157.95" x2="346.86" y2= "352.04" />
+  <line class="fil1 str0" x1="147.3" y1="346.56" x2="341.38" y2= "152.48" />
+  <circle class="fil1 str0" cx="441.59" cy="247.51" r="63.34"/>
+  <circle class="fil1 str0" cx="635.67" cy="441.59" r="63.34"/>
+  <circle class="fil1 str0" cx="634.68" cy="631.92" r="63.34"/>
+ </g>
+</svg>

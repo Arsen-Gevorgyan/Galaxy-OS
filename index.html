@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy OS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="capitain.svg" type="image/svg+xml">
+</head>
+<body>
+    <div id="wel" class="sc">
+        <h1>Welcome to Galaxy OS</h1>
+    </div>
+    <div id="lod" class="sc" style="display: none;">
+        <div class="lodc">
+            <div class="lodt">
+                <h1>Introduction</h1>
+            </div>
+            <div class="lodb">
+                <div class="prbar">
+                    <div id="prfil" class="prfil"></div>
+                </div>
+                <p id="lodtxt">Loading...</p>
+            </div>
+        </div>
+    </div>
+    <div id="bot" class="sc" style="display: none;">
+        <div class="botc">
+            <s class="cap">Captain America Express</s>
+            <img src="capitain.svg" id="botlogo" />
+            <p class="botp">Press any key to continue...</p>
+        </div>
+    </div>
+    <div id="reg" class="sc" style="display: none;">
+        <div class="regc">
+            <h1>Hello Lets setup this OS</h1>
+            <p>Type your username to become a user</p>
+            <p>Username can contain only letters 4-10</p>
+            <input type="text" id="usin" placeholder="Enter username" maxlength="10">
+            <button id="enbut">Join the OS</button>
+            <p id="errm" style="color: #ff6b6b; display: none;">
+                Username must be 4-10 letters only!
+            </p>
+        </div>
+    </div>
+    <div id="desk" style="display: none;">
+        <div id="top">
+            <div class="tpl">
+                <span class="osn">Galaxy</span>
+                <span class="welu" id="welu">Welcome, Guest</span>
+            </div>
+            <div class="tpr">
+                <button id="themebtn">Dark</button>
+                <span id="clk">Loading...</span>
+            </div>
+        </div>
+        <div id="deskc">
+            <div class="icon" data-window="settings">
+                <img src="setd.svg" alt="Settings">
+                <p>Settings</p>
+            </div>
+            <div class="icon" data-window="calendar">
+                <img src="cald.svg" alt="Calendar">
+                <p>Calendar</p>
+            </div>
+            <div class="icon" data-window="calculator">
+                <img src="calculd.svg" alt="Calculator">
+                <p>Calculator</p>
+            </div>
+            <div class="icon" data-window="tictac">
+                <img src="ticd.svg" alt="Tic Tac Toe">
+                <p>Tic Tac Toe</p>
+            </div>
+            <div class="icon" data-window="translator">
+                <img src="land.svg" alt="Translator">
+                <p>Translator</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="settings" class="win" style="display:none;">
+        <div class="winh">
+            <span>Settings</span>
+            <div class="winbtns">
+                <button class="maxbtn">[]</button>
+                <button class="clsbtn">X</button>
+            </div>
+        </div>
+        <div class="winc" id="set">
+            <div class="setsec">
+                <h3>User</h3>
+                <span id="setuser">Guest</span>
+            </div>
+            <div class="setsec">
+                <h3>Theme</h3>
+                <button id="setdark" class="setbtn active">Dark</button>
+                <button id="setlight" class="setbtn">Light</button>
+            </div>
+            <div class="setsec">
+                <h3>Background</h3>
+                <button id="setbg1" class="setbtn active">Space</button>
+                <button id="setbg2" class="setbtn">Navy</button>
+                <button id="setbg3" class="setbtn">Black</button>
+            </div>
+            <div class="setsec">
+                <h3>Clock</h3>
+                <label>Show seconds:</label>
+                <input type="checkbox" id="setsecs" checked>
+                <br>
+                <label>24-hour format:</label>
+                <input type="checkbox" id="set24h">
+            </div>
+            <div class="setsec">
+                <h3>System</h3>
+                <button id="setreset" class="setbtn" style="border-color:#ff6b6b;color:#ff6b6b;">Reset OS</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="calendar" class="win" style="display:none;">
+        <div class="winh">
+            <span>Calendar</span>
+            <div class="winbtns">
+                <button class="maxbtn">[]</button>
+                <button class="clsbtn">X</button>
+            </div>
+        </div>
+        <div class="winc" id="cal">
+            <button id="calprev"><</button>
+            <span id="calmonth">January 2025</span>
+            <button id="calnext">></button>
+            <div class="calgrid">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div id="caldays" class="calgrid"></div>
+        </div>
+    </div>
+
+    <div id="calculator" class="win" style="display:none;">
+        <div class="winh">
+            <span>Calculator</span>
+            <div class="winbtns">
+                <button class="maxbtn">[]</button>
+                <button class="clsbtn">X</button>
+            </div>
+        </div>
+        <div class="winc" id="calc">
+            <input type="text" id="calcdisp" readonly>
+            <div class="calcgrid">
+                <button class="calcbtn" data-val="7">7</button>
+                <button class="calcbtn" data-val="8">8</button>
+                <button class="calcbtn" data-val="9">9</button>
+                <button class="calcbtn op" data-val="/">÷</button>
+                <button class="calcbtn" data-val="4">4</button>
+                <button class="calcbtn" data-val="5">5</button>
+                <button class="calcbtn" data-val="6">6</button>
+                <button class="calcbtn op" data-val="*">×</button>
+                <button class="calcbtn" data-val="1">1</button>
+                <button class="calcbtn" data-val="2">2</button>
+                <button class="calcbtn" data-val="3">3</button>
+                <button class="calcbtn op" data-val="-">−</button>
+                <button class="calcbtn" data-val="0">0</button>
+                <button class="calcbtn" data-val=".">.</button>
+                <button class="calcbtn" data-val="%">%</button>
+                <button class="calcbtn op" data-val="+">+</button>
+                <button class="calcbtn cls" data-val="C">C</button>
+                <button class="calcbtn eq" data-val="=">=</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="tictac" class="win" style="display:none;">
+        <div class="winh">
+            <span>Tic Tac Toe</span>
+            <div class="winbtns">
+                <button class="maxbtn">[]</button>
+                <button class="clsbtn">X</button>
+            </div>
+        </div>
+        <div class="winc" id="ttt">
+            <div id="tttstatus">Player 1's turn (X)</div>
+            <div id="tttboard">
+                <div class="tttcell" data-index="0"></div>
+                <div class="tttcell" data-index="1"></div>
+                <div class="tttcell" data-index="2"></div>
+                <div class="tttcell" data-index="3"></div>
+                <div class="tttcell" data-index="4"></div>
+                <div class="tttcell" data-index="5"></div>
+                <div class="tttcell" data-index="6"></div>
+                <div class="tttcell" data-index="7"></div>
+                <div class="tttcell" data-index="8"></div>
+            </div>
+            <button id="tttreset">New Game</button>
+        </div>
+    </div>
+
+    <div id="translator" class="win" style="display:none;">
+        <div class="winh">
+            <span>Translator</span>
+            <div class="winbtns">
+                <button class="maxbtn">[]</button>
+                <button class="clsbtn">X</button>
+            </div>
+        </div>
+        <div class="winc" id="trans">
+            <div class="transrow">
+                <label>Shift:</label>
+                <input type="number" id="transshift" value="2" min="1" max="25">
+            </div>
+            <div class="transrow">
+                <button id="transenc">Encode</button>
+                <button id="transdec">Decode</button>
+            </div>
+            <textarea id="transin" placeholder="Type your message..."></textarea>
+            <div class="transrow">
+                <button id="transcopy">Copy</button>
+                <button id="transclear">Clear</button>
+            </div>
+            <div id="transout"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
