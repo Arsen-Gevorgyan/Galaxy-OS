@@ -144,7 +144,7 @@ function openWin(id) {
     let win = document.getElementById(id);
     if (win) {
         win.style.display = 'flex';
-        if (!win.style.top) {
+        if (!win.style.top || win.style.top === '') {
             win.style.top = '100px';
             win.style.left = '100px';
         }
@@ -183,6 +183,38 @@ document.querySelectorAll('.maxbtn').forEach(function(btn) {
             win.style.top = '0';
             win.style.left = '0';
         }
+    });
+});
+
+// Fix window dragging
+document.querySelectorAll('.win').forEach(function(win) {
+    let header = win.querySelector('.winh');
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    
+    header.onmousedown = function(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = function() {
+            document.onmouseup = null;
+            document.onmousemove = null;
+        };
+        document.onmousemove = function(e) {
+            e = e || window.event;
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            win.style.top = (win.offsetTop - pos2) + "px";
+            win.style.left = (win.offsetLeft - pos1) + "px";
+        };
+        bringToFront(win);
+    };
+    
+    win.addEventListener('mousedown', function() {
+        bringToFront(this);
     });
 });
 
