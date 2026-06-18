@@ -10,7 +10,7 @@ function showScreen(screen) {
     currentScreen = screen;
 }
 
-setTimeout(function() {
+setTimeout(function () {
     showScreen('lod');
     startLoading();
 }, 3000);
@@ -18,30 +18,30 @@ setTimeout(function() {
 function startLoading() {
     let progress = 0;
     let step = 0;
-    let interval = setInterval(function() {
+    let interval = setInterval(function () {
         step++;
         progress = Math.min(100, (step / 80) * 100);
         document.getElementById('prfil').style.width = progress + '%';
-        
+
         let dots = '';
         for (let i = 0; i < Math.floor(step / 10) % 4; i++) {
             dots += '.';
         }
         document.getElementById('lodtxt').textContent = 'Loading' + dots;
-        
+
         if (progress >= 100) {
             clearInterval(interval);
             document.getElementById('lodtxt').textContent = 'Loading complete!';
-            setTimeout(function() { showScreen('bot'); }, 600);
+            setTimeout(function () { showScreen('bot'); }, 600);
         }
     }, 50);
 }
 
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     if (currentScreen === 'bot') showScreen('reg');
 });
 
-document.getElementById('bot').addEventListener('click', function() {
+document.getElementById('bot').addEventListener('click', function () {
     if (currentScreen === 'bot') showScreen('reg');
 });
 
@@ -49,14 +49,14 @@ let input = document.getElementById('usin');
 let joinBtn = document.getElementById('enbut');
 let errMsg = document.getElementById('errm');
 
-input.addEventListener('input', function() {
+input.addEventListener('input', function () {
     let val = input.value.trim();
     if (val.length === 0) {
         errMsg.style.display = 'none';
         joinBtn.disabled = true;
         return;
     }
-    
+
     let isValid = /^[a-zA-Z]+$/.test(val) && val.length >= 4 && val.length <= 10;
     if (isValid) {
         errMsg.style.display = 'none';
@@ -67,7 +67,7 @@ input.addEventListener('input', function() {
     }
 });
 
-joinBtn.addEventListener('click', function() {
+joinBtn.addEventListener('click', function () {
     let name = input.value.trim();
     if (/^[a-zA-Z]+$/.test(name) && name.length >= 4 && name.length <= 10) {
         username = name;
@@ -75,7 +75,7 @@ joinBtn.addEventListener('click', function() {
     }
 });
 
-input.addEventListener('keypress', function(e) {
+input.addEventListener('keypress', function (e) {
     if (e.key === 'Enter' && !joinBtn.disabled) joinBtn.click();
 });
 
@@ -83,12 +83,12 @@ function enterDesktop(name) {
     document.getElementById('desk').style.display = 'block';
     document.getElementById('welu').textContent = 'Welcome, ' + name;
     document.getElementById('setuser').textContent = name;
-    
+
     document.getElementById('wel').style.display = 'none';
     document.getElementById('lod').style.display = 'none';
     document.getElementById('bot').style.display = 'none';
     document.getElementById('reg').style.display = 'none';
-    
+
     startClock();
     loadSettings();
 }
@@ -105,11 +105,11 @@ function updateClock() {
     let now = new Date();
     let use24 = document.getElementById('set24h').checked;
     let showSecs = document.getElementById('setsecs').checked;
-    
+
     let hours = now.getHours();
     let minutes = now.getMinutes();
     let seconds = now.getSeconds();
-    
+
     if (!use24) {
         let ampm = hours >= 12 ? 'PM' : 'AM';
         hours = hours % 12;
@@ -118,14 +118,14 @@ function updateClock() {
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
         let timeStr = hours + ':' + minutes + (showSecs ? ':' + seconds : '') + ' ' + ampm;
-        let dateStr = (now.getMonth()+1) + '/' + now.getDate() + '/' + now.getFullYear();
+        let dateStr = (now.getMonth() + 1) + '/' + now.getDate() + '/' + now.getFullYear();
         document.getElementById('clk').textContent = dateStr + ' ' + timeStr;
     } else {
         hours = hours < 10 ? '0' + hours : hours;
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
         let timeStr = hours + ':' + minutes + (showSecs ? ':' + seconds : '');
-        let dateStr = (now.getMonth()+1) + '/' + now.getDate() + '/' + now.getFullYear();
+        let dateStr = (now.getMonth() + 1) + '/' + now.getDate() + '/' + now.getFullYear();
         document.getElementById('clk').textContent = dateStr + ' ' + timeStr;
     }
 }
@@ -152,26 +152,26 @@ function openWin(id) {
     }
 }
 
-document.querySelectorAll('.icon').forEach(function(icon) {
-    icon.addEventListener('click', function() {
+document.querySelectorAll('.icon').forEach(function (icon) {
+    icon.addEventListener('click', function () {
         openWin(this.dataset.window);
     });
 });
 
-document.querySelectorAll('.clsbtn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
+document.querySelectorAll('.clsbtn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
         e.stopPropagation();
         let win = this.closest('.win');
         if (win) win.style.display = 'none';
     });
 });
 
-document.querySelectorAll('.maxbtn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
+document.querySelectorAll('.maxbtn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
         e.stopPropagation();
         let win = this.closest('.win');
         if (!win) return;
-        
+
         if (win.style.width === '100vw') {
             win.style.width = '';
             win.style.height = '';
@@ -186,34 +186,44 @@ document.querySelectorAll('.maxbtn').forEach(function(btn) {
     });
 });
 
-// Fix window dragging
-document.querySelectorAll('.win').forEach(function(win) {
-    let header = win.querySelector('.winh');
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    
-    header.onmousedown = function(e) {
+// FIXED: Window dragging
+document.querySelectorAll('.win').forEach(function (win) {
+    var header = win.querySelector('.winh');
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+    if (header) {
+        header.onmousedown = dragMouseDown;
+    } else {
+        win.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
         pos3 = e.clientX;
         pos4 = e.clientY;
-        document.onmouseup = function() {
-            document.onmouseup = null;
-            document.onmousemove = null;
-        };
-        document.onmousemove = function(e) {
-            e = e || window.event;
-            e.preventDefault();
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            win.style.top = (win.offsetTop - pos2) + "px";
-            win.style.left = (win.offsetLeft - pos1) + "px";
-        };
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
         bringToFront(win);
-    };
-    
-    win.addEventListener('mousedown', function() {
+    }
+
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        win.style.top = (win.offsetTop - pos2) + "px";
+        win.style.left = (win.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+
+    win.addEventListener('mousedown', function () {
         bringToFront(this);
     });
 });
@@ -225,18 +235,18 @@ let gameEnded = false;
 
 function handleTTTClick(i) {
     if (gameEnded || board[i] != '') return;
-    
+
     board[i] = currentPlayer;
     let cell = document.querySelector('.tttcell[data-index="' + i + '"]');
     cell.textContent = currentPlayer;
-    
+
     let win = checkWin();
     if (win) {
         document.getElementById('tttstatus').textContent = win + ' wins!';
         gameEnded = true;
         return;
     }
-    
+
     let empty = false;
     for (let i = 0; i < board.length; i++) {
         if (board[i] == '') empty = true;
@@ -246,7 +256,7 @@ function handleTTTClick(i) {
         gameEnded = true;
         return;
     }
-    
+
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
     document.getElementById('tttstatus').textContent = "Player " + (currentPlayer === 'X' ? '1' : '2') + "'s turn (" + currentPlayer + ")";
 }
@@ -263,17 +273,17 @@ function checkWin() {
     return null;
 }
 
-document.querySelectorAll('.tttcell').forEach(function(cell) {
-    cell.addEventListener('click', function() {
+document.querySelectorAll('.tttcell').forEach(function (cell) {
+    cell.addEventListener('click', function () {
         handleTTTClick(parseInt(this.dataset.index));
     });
 });
 
-document.getElementById('tttreset').addEventListener('click', function() {
+document.getElementById('tttreset').addEventListener('click', function () {
     board = ['', '', '', '', '', '', '', '', ''];
     currentPlayer = 'X';
     gameEnded = false;
-    document.querySelectorAll('.tttcell').forEach(function(c) {
+    document.querySelectorAll('.tttcell').forEach(function (c) {
         c.textContent = '';
     });
     document.getElementById('tttstatus').textContent = "Player 1's turn (X)";
@@ -284,35 +294,35 @@ let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
 
 function renderCalendar() {
-    let months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     document.getElementById('calmonth').textContent = months[currentMonth] + ' ' + currentYear;
-    
+
     let first = new Date(currentYear, currentMonth, 1).getDay();
     let daysThisMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
     let daysPrev = new Date(currentYear, currentMonth, 0).getDate();
-    
+
     let today = new Date();
     let html = '';
-    
+
     for (let i = first - 1; i >= 0; i--) {
         html += '<div class="calday other">' + (daysPrev - i) + '</div>';
     }
-    
+
     for (let d = 1; d <= daysThisMonth; d++) {
         let isToday = (d === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear());
         html += '<div class="calday' + (isToday ? ' today' : '') + '">' + d + '</div>';
     }
-    
+
     document.getElementById('caldays').innerHTML = html;
 }
 
-document.getElementById('calprev').addEventListener('click', function() {
+document.getElementById('calprev').addEventListener('click', function () {
     currentMonth--;
     if (currentMonth < 0) { currentMonth = 11; currentYear--; }
     renderCalendar();
 });
 
-document.getElementById('calnext').addEventListener('click', function() {
+document.getElementById('calnext').addEventListener('click', function () {
     currentMonth++;
     if (currentMonth > 11) { currentMonth = 0; currentYear++; }
     renderCalendar();
@@ -324,27 +334,27 @@ renderCalendar();
 let calcExpression = '';
 let display = document.getElementById('calcdisp');
 
-document.querySelectorAll('.calcbtn').forEach(function(b) {
-    b.addEventListener('click', function() {
+document.querySelectorAll('.calcbtn').forEach(function (b) {
+    b.addEventListener('click', function () {
         let v = this.dataset.val;
-        
+
         if (v === 'C') {
             calcExpression = '';
             display.value = '';
             return;
         }
-        
+
         if (v === '=') {
             try {
                 calcExpression = eval(calcExpression) + '';
                 display.value = calcExpression;
-            } catch(e) {
+            } catch (e) {
                 display.value = 'Error';
                 calcExpression = '';
             }
             return;
         }
-        
+
         calcExpression += v;
         display.value = calcExpression;
     });
@@ -369,29 +379,29 @@ function caesar(str, shift, encode) {
     return result;
 }
 
-document.getElementById('transenc').addEventListener('click', function() {
+document.getElementById('transenc').addEventListener('click', function () {
     let input = document.getElementById('transin').value;
     let shift = parseInt(document.getElementById('transshift').value) || 2;
     document.getElementById('transout').textContent = caesar(input, shift, true);
 });
 
-document.getElementById('transdec').addEventListener('click', function() {
+document.getElementById('transdec').addEventListener('click', function () {
     let input = document.getElementById('transin').value;
     let shift = parseInt(document.getElementById('transshift').value) || 2;
     document.getElementById('transout').textContent = caesar(input, shift, false);
 });
 
-document.getElementById('transcopy').addEventListener('click', function() {
+document.getElementById('transcopy').addEventListener('click', function () {
     let text = document.getElementById('transout').textContent;
     if (text) {
         navigator.clipboard.writeText(text);
         let orig = this.textContent;
         this.textContent = 'Copied!';
-        setTimeout(function() { this.textContent = orig; }.bind(this), 1400);
+        setTimeout(function () { this.textContent = orig; }.bind(this), 1400);
     }
 });
 
-document.getElementById('transclear').addEventListener('click', function() {
+document.getElementById('transclear').addEventListener('click', function () {
     document.getElementById('transin').value = '';
     document.getElementById('transout').textContent = '';
 });
@@ -399,7 +409,7 @@ document.getElementById('transclear').addEventListener('click', function() {
 // Theme
 let darkMode = true;
 
-document.getElementById('themebtn').addEventListener('click', function() {
+document.getElementById('themebtn').addEventListener('click', function () {
     darkMode = !darkMode;
     if (!darkMode) {
         document.body.classList.add('light');
@@ -414,17 +424,17 @@ document.getElementById('themebtn').addEventListener('click', function() {
 function loadSettings() {
     let saved = localStorage.getItem('galaxyos');
     if (!saved) return;
-    
+
     let s = JSON.parse(saved);
-    
+
     if (s.theme === 'light') {
         darkMode = false;
         document.body.classList.add('light');
         document.getElementById('themebtn').textContent = 'Light';
     }
-    
+
     if (s.bg) applyBackground(s.bg);
-    
+
     if (s.secs !== undefined) document.getElementById('setsecs').checked = s.secs;
     if (s.h24 !== undefined) document.getElementById('set24h').checked = s.h24;
 }
@@ -444,75 +454,75 @@ function applyBackground(bg) {
     document.body.dataset.bg = bg;
     let colors = { space: '#0a0a1a', navy: '#0d0d24', black: '#000000' };
     let lightColors = { space: '#e8e8f0', navy: '#d0d0e0', black: '#f0f0f0' };
-    
+
     let isLight = document.body.classList.contains('light');
     let color = isLight ? lightColors[bg] || '#e8e8f0' : colors[bg] || '#0a0a1a';
-    
+
     document.body.style.background = color;
-    document.querySelectorAll('.sc, #desk').forEach(function(el) {
+    document.querySelectorAll('.sc, #desk').forEach(function (el) {
         el.style.background = color;
     });
     saveSettings();
 }
 
-document.getElementById('setdark').addEventListener('click', function() {
-    document.querySelectorAll('.setbtn').forEach(function(b) {
+document.getElementById('setdark').addEventListener('click', function () {
+    document.querySelectorAll('.setbtn').forEach(function (b) {
         b.classList.remove('active');
     });
     this.classList.add('active');
     if (!darkMode) document.getElementById('themebtn').click();
 });
 
-document.getElementById('setlight').addEventListener('click', function() {
-    document.querySelectorAll('.setbtn').forEach(function(b) {
+document.getElementById('setlight').addEventListener('click', function () {
+    document.querySelectorAll('.setbtn').forEach(function (b) {
         b.classList.remove('active');
     });
     this.classList.add('active');
     if (darkMode) document.getElementById('themebtn').click();
 });
 
-document.getElementById('setbg1').addEventListener('click', function() {
-    document.querySelectorAll('#set .setbtn').forEach(function(b) {
+document.getElementById('setbg1').addEventListener('click', function () {
+    document.querySelectorAll('#set .setbtn').forEach(function (b) {
         b.classList.remove('active');
     });
     this.classList.add('active');
     applyBackground('space');
 });
 
-document.getElementById('setbg2').addEventListener('click', function() {
-    document.querySelectorAll('#set .setbtn').forEach(function(b) {
+document.getElementById('setbg2').addEventListener('click', function () {
+    document.querySelectorAll('#set .setbtn').forEach(function (b) {
         b.classList.remove('active');
     });
     this.classList.add('active');
     applyBackground('navy');
 });
 
-document.getElementById('setbg3').addEventListener('click', function() {
-    document.querySelectorAll('#set .setbtn').forEach(function(b) {
+document.getElementById('setbg3').addEventListener('click', function () {
+    document.querySelectorAll('#set .setbtn').forEach(function (b) {
         b.classList.remove('active');
     });
     this.classList.add('active');
     applyBackground('black');
 });
 
-document.getElementById('setsecs').addEventListener('change', function() {
+document.getElementById('setsecs').addEventListener('change', function () {
     startClock();
     saveSettings();
 });
 
-document.getElementById('set24h').addEventListener('change', function() {
+document.getElementById('set24h').addEventListener('change', function () {
     startClock();
     saveSettings();
 });
 
-document.getElementById('setreset').addEventListener('click', function() {
+document.getElementById('setreset').addEventListener('click', function () {
     if (confirm('Reset all settings?')) {
         localStorage.removeItem('galaxyos');
         location.reload();
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     if (!darkMode) {
         document.getElementById('setlight').classList.add('active');
     }
